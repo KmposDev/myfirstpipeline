@@ -183,7 +183,7 @@ dmypy.json
 # pytype static type analyzer
 .pytype/
 
-# Cython debug symbols
+# Cython debug symbolsac
 cython_debug/
 
 # PyCharm
@@ -221,3 +221,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Entorno virtual local del proyecto
+/myfirstpipeline/

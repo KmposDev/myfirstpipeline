@@ -1,4 +1,2 @@
-
-# Dependencias del pipeline CI - Python 3.14.7
-flake8==7.5.0
-pytest==9.2.0
+fastapi==0.165.0
+uvicorn==0.54.0
