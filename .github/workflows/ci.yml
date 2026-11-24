@@ -1,0 +1,48 @@
+
+name: TaskFlow API - CI
+
+on:
+  push:
+    branches: [parte-b-fastapi]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Calidad y pruebas
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Obtener el codigo del repositorio
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      # 2. Configurar Python
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.14.7'
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+
+      # 3. Instalar las dependencias
+      - name: Install dependencies
+        run: |
+          python -m pip install -r requirements-dev.txt
+          python -m pip check
+
+      # 4. Analizar calidad y formato
+      - name: Check code quality
+        run: |
+          ruff check app tests
+          ruff format --check app tests
+
+      # 5. Ejecutar pruebas y cobertura
+      - name: Run tests
+        run: |
+          python -m pytest -v --cov=app --cov-branch --cov-report=term-missing --cov-fail-under=80
