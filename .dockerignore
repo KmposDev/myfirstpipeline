@@ -1,0 +1,14 @@
+
+.git
+.github
+tests/
+myfirstpipeline/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.coverage
+.env
+requirements-dev.txt
